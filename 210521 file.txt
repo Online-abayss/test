@@ -1,3 +1,82 @@
-파일 읽기 및 저장
+#define _CRT_SECURE_NO_WARNINGS
 
-알바 쉬는날에 다 올릴예정... 허리가 아픔..
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+#define MAX 10000
+int main(void)
+{
+	
+
+	//파일 쓰기
+
+	//char line[MAX]; 
+	//FILE* file = fopen("test1.txt", "wb"); //r 읽기 , w 쓰기, a 이어쓰기 / t txt, b 바이럴? //왜 경로 지정했는데 안되는지 모르겠다.. 
+	//if (file == NULL)
+	//{
+	//	printf(" 파일 열기 실패\n");
+	//	return 1;
+	//}
+
+	//char line[MAX];
+	//FILE* file = fopen("test1.txt", "rb"); //r 읽기 , w 쓰기, a 이어쓰기 / t txt, b 바이럴? //왜 경로 지정했는데 안되는지 모르겠다.. 
+	//if (file == NULL)
+	//{
+	//	printf(" 파일 열기 실패\n");
+	//	return 1;
+	//}
+
+	//fputs, fgets -> 문자열을 저장하기 위한 명령어
+
+	//fputs("fputs를 이용해서 글을 적어볼게요\n", file);
+	//fputs("fputs를 이용해서 적혀있는지 확인해봐요\n", file);
+
+	//while (fgets(line, MAX, file) != NULL)
+	//{
+	//	printf("%s", line);
+	//}
+
+	//fclose(file);
+
+
+
+
+	int num[6] = { 0,0,0,0,0,0 }; //추첨번호
+	int bonus = 0; 
+	char str1[MAX];
+	char str2[MAX];
+
+	/*FILE* file = fopen("lotto1.txt", "wb");
+	if (file == NULL)
+	{
+		printf("파일 읽기 실패");
+		return 1;
+	}*/
+
+	//로또 추첨 번호 저장
+	/*fprintf(file, "%s %d %d %d %d %d %d\n", "추첨번호", 1, 2, 3, 4, 5, 6);
+	fprintf(file, "%s %d ", "보너스번호", 7);*/
+
+	FILE* file = fopen("lotto1.txt", "rb");
+	if (file == NULL)
+	{
+		printf("파일 읽기 실패");
+		return 1;
+	}
+
+
+	fscanf(file, "%s %d %d %d %d %d %d", str1, &num[0], &num[1], &num[2], &num[3], &num[4], &num[5]); // 크흠.. 잘모르곘다 나중에 확인..
+	printf("&s %d %d %d %d %d %d", str1, num[0], num[1], num[2], num[3], num[4], num[5]);
+
+	fscanf(file, "%s %d", str2, &bonus);
+	printf( "%s %d", str2, bonus);
+
+
+	fclose(file);
+
+	return 0;
+
+
+
+}
+

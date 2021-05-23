@@ -1,1 +1,104 @@
-야간 알바로 피곤하여... 내일 올리겠음.
+#include <stdio.h>
+
+struct game {
+	char * name;
+	int year;
+	int price;
+	char * company;
+
+	struct game* freindgame;
+
+};
+
+
+typedef struct gameinformation { // gameinformation을 지우면 밑에처럼 struct gameinformation xxxx 를 이용할 수 없다. 
+	char* name;
+	int year;
+	int price;
+	char* company;
+
+	struct game* freindgame;
+
+} game_info;
+
+int main(void)
+
+{
+
+	struct game gameinfo; // c언어 그냥 깔면 오류가 터지니 위의 구조체를 char * 부분을 const char * 로 변경하거나 속성 -> c/c++ -> 언어 -> 준수모드 아니요로 변경하기.
+	gameinfo.name = "take down : red saber";
+	gameinfo.year = 2012;
+	gameinfo.price = 200000;
+	gameinfo.company = "세렐란";
+
+	printf("게임명 : %s\n", gameinfo.name);
+	printf("게임회사 : %s\n", gameinfo.company);
+	printf("게임 출시년도 : %d\n", gameinfo.year);
+	printf("게임 모금금액 : %d\n", gameinfo.price);
+	
+	printf("\n");
+	//구조체를 배열처럼 초기화
+	struct game gameinfo2 = { "mighty no.9",2016,400000,"comcept" };
+
+	printf("게임명 : %s\n", gameinfo2.name);
+	printf("게임회사 : %s\n", gameinfo2.company);
+	printf("게임 출시년도 : %d\n", gameinfo2.year);
+	printf("게임 모금금액 : %d\n", gameinfo2.price);
+
+
+	//구조체 배열
+
+	struct game gamearray[2] = {
+		{"mighty no.9",2016,400000,"comcept"},
+	{"mighty no.10",2017,400000,"fake"}
+	};
+
+	//구조체 포인터
+
+	struct game  * gameptr; 
+	gameptr = &gameinfo2;
+	
+
+	printf("\n 구조체 포인터 \n");
+	printf("게임명 : %s\n", (*gameptr).name);
+	printf("게임회사 : %s\n", (*gameptr).company);
+	printf("게임 출시년도 : %d\n", (*gameptr).year);
+	printf("게임 모금금액 : %d\n", (*gameptr).price);
+
+
+	printf("\n 구조체 포인터 다른사용법 \n");
+	printf("게임명 : %s\n", gameptr->name);
+	printf("게임회사 : %s\n", gameptr->company);
+	printf("게임 출시년도 : %d\n", gameptr->year);
+	printf("게임 모금금액 : %d\n", gameptr->price);
+
+	// 구조체 속 구조체
+	gameinfo.freindgame = &gameinfo2;
+		printf("\n 구조체 포인터 속 구조체 \n");
+		printf("게임명 : %s\n", gameinfo.freindgame->name);
+		printf("게임회사 : %s\n", gameinfo.freindgame->company);
+		printf("게임 출시년도 : %d\n", gameinfo.freindgame->year);
+		printf("게임 모금금액 : %d\n", gameinfo.freindgame->price);
+
+		//typedef 자료형에 별명지정
+		int i = 1;
+		typedef int 정수;
+		typedef float 실수;
+		정수 정수변수 = 3;
+		실수 실수변수 = 3.23f;
+
+		printf(" \n 정수변수 : %d , 실수변수 : %.2f \n", 정수변수, 실수변수);
+
+		typedef struct game 게임정보;
+		게임정보 game1;
+
+		game_info game2;
+		game2.name " 한글게임2";
+		game2.company " 한글회사";
+		
+
+	return 0;
+
+
+}
+
