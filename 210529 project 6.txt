@@ -1,0 +1,141 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void initdata(); // 게임 초기화
+int arrayfish[6]; // 어항 갯수
+int level; // 게임 레벨
+int* cursor; // 몇번 어항에 줄지 주소값 저장 및 전달
+void printffishes(); // 화면에 보여줄 어항 상태
+void decreasewater(long elapsedtime);
+
+
+int main(void)
+{
+
+	long starttime = 0; // 게임 시작시간
+	long totaltime = 0; // 게임 총 걸린 시간
+	long pretime = 0; // 이전에 걸린 시간
+
+	int num; // 몇번 어항에 물을 줄건지
+	
+	initdata();
+
+	cursor = arrayfish; // cursor[0~5]
+
+	starttime = clock(); //현재시간을 0.001 단위로
+
+	while (1) // 어항 속 물고기가 다 죽을 때 까지 게임하기 위해
+	{
+		printffishes();
+		printf("몇번 어항에 물을 주시겠습니까?");
+		scanf_s("%d", &num);
+
+		// 입력값 체크
+		if (num < 1 || num>6)
+		{
+			printf("\n 입력값이 잘못되었습니다.\n");
+			continue;
+		}
+
+		totaltime = (clock() - starttime) / CLOCKS_PER_SEC; // 0.001초로 보여주는 식
+		printf(" 총 경과 시간 : %ld 초 \n", totaltime);
+
+		pretime = totaltime - pretime; // 진짜 이전에 걸린 시간 
+		printf("최근 경과 시간 : %ld 초 \n", pretime);
+
+		// 어항의 물감소
+		decreasewater(pretime);
+
+		// 물주기
+		if (cursor[num - 1] <= 0) // num 자체는 현재 1~6까지 보여주는 형식으로 설정했고 커서는 위에 arrayfish로 인해 0~5까지의 배열을 생성함
+		{
+			printf(" %d번 물고기는 죽었습니다.. 더 이상 물을 주지 않습니다.\n", num);
+		}
+		else if (cursor[num - 1] + 1 <= 100) // 100 이상의 물이 들어있는 어항에 물을 안주기 위해
+		{
+			printf(" %d번 어항에 물을 줍니다. \n\n", num);
+			cursor[num - 1] += 1;
+		}
+
+		// 난이도 조정
+		if (totaltime / 20 > level - 1) //  20초마다 난이도 상향
+		{
+			level++;
+			printf(" %d로 레벨업을 하였습니다.\n\n", level);
+
+			if (level == 5)
+			{
+				printf(" \n\n 최고레벨을 달성하여 게임을 종료합니다.");
+				exit(0);
+			}
+
+		}
+
+
+		// 모든 물고기가 사망 시 Game Over
+		
+		if (checkfishalive() == 0)
+		{
+			printf("모든 물고기가 사망하였습니다. \n");
+			exit(0);
+		}
+		else
+		{
+			printf("물고기가 아직 살아 있습니다.! \n");
+		}
+		pretime = totaltime; // 10초의 시간이 지나고 다시 물줄떄가 15초면 5초가 되고 추후 10초가 또 지나서 이 10초를 다시 넣을곳을 만들기 위해
+	}
+
+
+	return 0;
+}
+
+
+
+void initdata()
+{
+	 level = 1; // 게임 레벨
+	for (int i = 0; i < 6; i++)
+	{
+		arrayfish[i] = 100; //게임 시작 첫 물높이
+	}
+
+	
+
+}
+
+
+void printffishes() 
+{
+	printf("%3d번 %3d번 %3d번 %3d번 %3d번 %3d번\n", 1, 2, 3, 4, 5, 6);
+	for (int i = 0; i < 6; i++)
+	{
+		printf("  %d ", arrayfish[i]); // 각 어항의 상태 표시
+	}
+	printf("\n\n");
+}
+
+void decreasewater(long elapsedtime)
+{
+	for (int i = 1; i < 6; i++)
+	{
+		arrayfish[i] -= (level * 3 * (int) elapsedtime); // 위에 long으로 소수점?단위로 설정했지만 계산은 정수로 편히 하기 위해서 int로 넣음
+		if (arrayfish[i] < 0)
+		{
+			arrayfish[i] = 0;
+		}
+	}
+}
+
+
+int checkfishalive()
+{
+	for (int i = 0; i < 6; i++)
+	{
+		if (arrayfish[i] > 0)
+			return 1; // 참 , 살아있기에 밑에 0을 안만나 끝나지 않음
+
+	}
+	return 0; //거짓 
+}
