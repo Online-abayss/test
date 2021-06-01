@@ -1,0 +1,177 @@
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+
+
+
+int arrayanimal[4][5]; //카드 맵
+int checkanimal[4][5]; //뒤집혔는지 확인 여부
+void initanimalarray(); // 게임 초기화
+void initanimalanme();
+char* stranimal[10];
+void shuffleanimal();
+
+
+int getemptyposition();
+int conv_pos_x(int x);
+int conv_pos_y(int y);
+
+
+void printanimal();
+void printquestion();
+
+int main(void)
+{
+	srand(time(NULL));
+	initanimalarray(); //게임 초기화
+	initanimalname(); //카드 동물이름
+
+	shuffleanimal(); // 카드 섞기
+	
+	int failcount = 0; //실패횟수
+
+	while (1)
+	{
+
+		int select1 = 0; // 사용자의 첫번째 선택
+		int select2 = 0; // 사용자의 두번째 선택
+
+
+		printanimal();
+		printquestion();
+		printf("뒤집을 카드를 2개 고르시오 :");
+		scanf_s("%d %d", &select1, &select2);
+		if (select1 == select2)
+		{
+			continue;
+		}
+
+	}
+
+	return 0;
+}
+
+
+void initanimalarray()
+{
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			arrayanimal[i][j] = -1;
+		}
+	}
+
+
+}
+
+void initanimalanme()
+{
+	stranimal[0] = "원숭이";
+	stranimal[1] = "하마";
+	stranimal[2] = "강아지";
+	stranimal[3] = "고양이";
+	stranimal[4] = "돼지";
+
+	stranimal[5] = "코끼리";
+	stranimal[6] = "기린";
+	stranimal[7] = "낙타";
+	stranimal[8] = "타조";
+	stranimal[9] = "호랑이";
+
+}
+
+void shuffleanimal()
+{
+	for (int i = 0; i < 10; i++)
+	{
+
+		for (int j = 0; j < 2; j++)
+		{
+			int pos = getemptyposition(); //빈공간 위치
+			int x = conv_pos_x(pos); // x축의 빈공간 넣기
+			int y = conv_pos_y(pos); // y축의 빈공간 넣기
+
+			arrayanimal[x][y] = i;
+		}
+	}
+
+}
+
+//빈공간 찾기
+int getemptyposition()
+{
+
+	while (1)
+	{
+		int randpos = rand() % 20; // 0~19  // 이걸 좌표화 할 예정
+
+		int x = conv_pos_x(randpos);
+		int y = conv_pos_y(randpos);
+
+		if (arrayanimal[x][y] == -1) //현재 -1를 빈공간이라고 지정함
+		{
+			return randpos; // 다시 찾아라.
+		}
+	}
+	return 0; //의미가 없지만 int로 선언한 구조이기에 넣음
+}
+
+int conv_pos_x(int x)
+{
+	return x / 5;
+
+}
+
+int conv_pos_y(int y)
+{
+
+	return y % 5; 
+}
+	                                      //seq          //checkanimal
+//ㅁㅁㅁㅁㅁ 0  1  2  3  4   0 0 0 0 0     0 0 하마 0 0  0 0 1 0 0
+//ㅁㅁㅁㅁㅁ 5  6  7  8  9   1 1 1 1 1	   0 0 0 0 0     0 0 0 0 0  
+//ㅁㅁㅁㅁㅁ10 11 12 13 14   2 2 2 2 2     0 0 0 0 하마  0 0 0 0 1
+//ㅁㅁㅁㅁㅁ15 16 17 18 19   3 3 3 3 3	   0 0 0 0 0     0 0 0 0 0
+ //저렇게 숫자화 했을때를 좌표화 하면 
+// x 축은 5로 나누어서 몫의 값으로 구분하기.
+// y 축은 5로 나누어서 나머지값으로 구분하기.
+
+
+void printanimal() //동물의 위치 출력
+{
+	printf("\n====== 미리 정답 보기 \n");
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			printf("%8s", stranimal[arrayanimal[i][j]]);
+		}
+		printf("\n");
+	}
+	printf("\n=====================================\n\n");
+}
+
+
+void printquestion() // 문제 제시( 카드 맵)
+{
+	printf("\n\n(문제)\n\n");
+	int seq = 0;
+
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			if (checkanmail[i][j] != 0) //정답 일시
+			{
+				printf("%8s", stranimal[arrayanimal[i][j]]);
+			}
+			else
+			{
+				printf("&8d",seq)
+			}
+		}
+	}
+
+
+}
