@@ -7,7 +7,7 @@
 int arrayanimal[4][5]; //카드 맵
 int checkanimal[4][5]; //뒤집혔는지 확인 여부
 void initanimalarray(); // 게임 초기화
-void initanimalanme();
+void initanimalname();
 char* stranimal[10];
 void shuffleanimal();
 
@@ -20,6 +20,8 @@ int conv_pos_y(int y);
 void printanimal();
 void printquestion();
 
+int foundallanimal();
+
 int main(void)
 {
 	srand(time(NULL));
@@ -27,7 +29,7 @@ int main(void)
 	initanimalname(); //카드 동물이름
 
 	shuffleanimal(); // 카드 섞기
-	
+
 	int failcount = 0; //실패횟수
 
 	while (1)
@@ -37,13 +39,53 @@ int main(void)
 		int select2 = 0; // 사용자의 두번째 선택
 
 
+
+
 		printanimal();
 		printquestion();
-		printf("뒤집을 카드를 2개 고르시오 :");
+		printf("\n뒤집을 카드를 2개 고르시오 :");
 		scanf_s("%d %d", &select1, &select2);
 		if (select1 == select2)
 		{
 			continue;
+		}
+
+		// 좌표에 해당하는 카드가 같은지 여부
+		int firstselect_x = conv_pos_x(select1);
+		int firstselect_y = conv_pos_y(select1);
+
+		int secondselect_x = conv_pos_x(select2);
+		int secondselect_y = conv_pos_y(select2);
+
+		// 같은 동물으로 정답처리 하는 과정
+		if ((
+			checkanimal[firstselect_x][firstselect_y] == 0 // 카드가 안뒤집혔는지 확인
+			&& checkanimal[secondselect_x][secondselect_y] == 0)
+			&&
+
+			(arrayanimal[firstselect_x][firstselect_y] == arrayanimal[secondselect_x][secondselect_y])) // 두 동물이 같은지
+
+		{
+			printf("\n ===빙고 : %s 발견=== \n", stranimal[arrayanimal[firstselect_x][firstselect_y]]);
+			checkanimal[firstselect_x][firstselect_y] = 1;
+			checkanimal[secondselect_x][secondselect_y] = 1;
+
+		}
+		else
+		{
+			printf(" \n=== 떙 === \n");
+			printf(" %d : %s\n", select1, stranimal[arrayanimal[firstselect_x][firstselect_y]]);
+			printf(" %d : %s\n", select1, stranimal[arrayanimal[secondselect_x][secondselect_y]]);
+			printf(" \n\n ");
+
+			failcount++;
+		}
+
+		if (foundallanimal() == 1)
+		{
+			printf("\n\n 축하합니다. 다 찾으셨습니다. \n");
+			printf("총 %d번 실수하였습니다\n ", failcount);
+			break;
 		}
 
 	}
@@ -65,7 +107,7 @@ void initanimalarray()
 
 }
 
-void initanimalanme()
+void initanimalname()
 {
 	stranimal[0] = "원숭이";
 	stranimal[1] = "하마";
@@ -126,9 +168,9 @@ int conv_pos_x(int x)
 int conv_pos_y(int y)
 {
 
-	return y % 5; 
+	return y % 5;
 }
-	                                      //seq          //checkanimal
+//seq          //checkanimal
 //ㅁㅁㅁㅁㅁ 0  1  2  3  4   0 0 0 0 0     0 0 하마 0 0  0 0 1 0 0
 //ㅁㅁㅁㅁㅁ 5  6  7  8  9   1 1 1 1 1	   0 0 0 0 0     0 0 0 0 0  
 //ㅁㅁㅁㅁㅁ10 11 12 13 14   2 2 2 2 2     0 0 0 0 하마  0 0 0 0 1
@@ -162,16 +204,33 @@ void printquestion() // 문제 제시( 카드 맵)
 	{
 		for (int j = 0; j < 5; j++)
 		{
-			if (checkanmail[i][j] != 0) //정답 일시
+			if (checkanimal[i][j] != 0) //정답 일시
 			{
 				printf("%8s", stranimal[arrayanimal[i][j]]);
 			}
 			else
 			{
-				printf("&8d",seq)
+				printf("%8d", seq++);
 			}
 		}
+		printf("\n");
 	}
 
 
+}
+
+int foundallanimal()
+{
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			if (checkanimal[i][j] == 0)
+			{
+				return 0;
+			}
+		}
+
+	}
+	return 1;
 }
