@@ -1,0 +1,36 @@
+## 문자열 및 숫자열 ##
+
+print("hellow world!")
+
+x = "hellow"
+y = "world"
+z = "bye"
+
+a = 1
+
+print( "안녕"+ " 잘 지내니?")
+print(z + y+ z)
+
+print ( " 에이는" + str(a))
+
+## 조건문 ##
+
+if 1>2:
+    print("hellow")
+
+if not 1>2:
+    print("hello")
+
+if 0>0 or 2>1:
+    print("hello world")
+
+x = 3
+if x> 3:
+    print("bye")
+elif x ==3 :
+    print("BYE")
+else :
+    print("HI")
+
+## 함수 ##
+
