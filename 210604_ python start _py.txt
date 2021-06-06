@@ -34,3 +34,127 @@ else :
 
 ## 함수 ##
 
+def chat(name1, name2, age):
+    print("%s : hi. 너 몇 살이니?" % name1)
+    print("%s : 나? 나는 %d" % (name2,age))
+
+
+chat("알렉스","윤하",10)
+chat("워니","유이",30)
+
+
+def dsum(a,b):
+    result = a +b
+    return result ## 만약 print(return)으로 종료해서 시작하면 None 으로 결과가 뜬다.  
+
+d = dsum(1,2)
+print(d)
+
+
+## 복습1 ##
+
+def introduce(name,age):
+
+    if age<10:
+        print("안녕 " + name)
+    elif age <= 20 and age>= 10:
+     print("안녕하세요 " + name) 
+    else:  
+        print("안녕하십니까 "+ name)
+
+introduce("워니",9)
+
+introduce("윤하",15)
+
+introduce("유이",30)
+
+## 반복문 ##
+
+i = 0
+while i <  3:  ## while True: = 무한루프 
+    print(i)
+    print("윤하: hi")
+    i = i + 1
+
+j = 0
+while True:
+    print(j)
+    print("유이: hi")
+    j = j +1
+    if j >2:
+     break
+
+for k in range(10):
+    print(k)
+    if k == 1:
+        print("FAKE")
+        continue
+    print("워니: hi")
+
+
+
+## 자료 구조 (list)##
+x = [1,2,3,4] ## list() 실행시 []으로 나온다  / list 크기보다 큰 것을 출력하려 하면 오류뜬다.
+y = ["hello", "world"]  
+z = ["hello",1,2,3]
+x1 =[4,2,3,1]
+print(x)
+print(y)
+print(z)
+print(x+z)
+print(x+y)
+
+print(x[0])
+x[3]= 10
+print(x)
+
+print(len(x)) ## 크기 파악
+print(sorted(x1)) #작은수에서 큰수로 정렬
+print(sum(x)) ## 합계
+
+for n in x:
+    print(n) ## 차례대로 x의 값을 보여줌
+
+print(x.index(3)) # 3이 x에서 몇번째 위치에 있는지 알려줌
+print(y.index("hello"))
+
+print("hello" in y) ## hello가 y에 있는지 여부
+
+if "hello" in y:
+    print("hellow가 있어요")
+
+## 자료 구조 (tuple)##
+x = (1,2,3) ## 튜플은 list와 다른점은 x[0] = 10 으로 해서 x= (10,2,3)으로  가변을 할 수 없다.
+y = ('a','b','c')
+z = (1, "helloo","there")
+
+print(x)
+print(y)
+print(z)
+
+print(x+y)
+print('a' in y)
+print (z.index(1)) 
+
+
+## 자료 구조 (dict))##
+
+x= dict()
+y= {}
+
+print(x)
+print(y)
+
+x=  {
+    "name" : "워니",
+    "age" : 20
+}
+print(x)
+print(x["name"]) ## name = key 결과로 나오는 워니는 value값 
+print(x["age"]) ## key 값에 들어갈 수 있는 값들은 불변만 가능. 즉 list는 불가능하다.
+
+print("age"in x)
+
+print(x.keys()) ## x의 키를 모두 보여주라는 뜻.
+print(x.values()) ## x의 value를 모두 보여주라는 뜻.
+
