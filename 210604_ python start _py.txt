@@ -151,10 +151,108 @@ x=  {
 }
 print(x)
 print(x["name"]) ## name = key 결과로 나오는 워니는 value값 
-print(x["age"]) ## key 값에 들어갈 수 있는 값들은 불변만 가능. 즉 list는 불가능하다.
+print(x["age"]) ## key 값에 들어갈 수 있는 값들은 불변만 가능. 즉 list는 불가능하다. / 단 value값은 가변이 가능하다.
 
 print("age"in x)
 
 print(x.keys()) ## x의 키를 모두 보여주라는 뜻.
 print(x.values()) ## x의 value를 모두 보여주라는 뜻.
 
+x = {
+    0 : "worni",
+    1:  "hello",
+    "age":20
+}
+
+for key in x:
+    print("key :"+ str(key))
+    print("value: "+ str(x[key]))
+
+x[0] = "워니"
+print(x)
+
+x["school"]= "한빛" ## 딕션너리에 key와 value를 추가함
+print(x)
+
+
+
+## 복습 2 ##
+
+fruit = ["사과","사과","바나나","바나나","딸기","키위","복숭아","복숭아","복숭아" ]
+
+d = {}
+
+for f in fruit:
+    if f in d: ## 사과라는 key가 딕션너리에 있는지 확인
+        d[f] = d[f] + 1 ## 사과 갯수를 한개 올린다.
+    else:
+        d[f] = 1 ## 만약 없으면 사과를 key에 넣고, value값은 1로 만들어 달라는 뜻.
+
+print(d)
+
+## 클래스와 오브젝트 ## 
+
+class person:
+    name = "워니"
+
+    def say_hellow(self):
+        print("hi. 나는 " + self.name)
+
+
+p = person()
+p.say_hellow()
+
+
+
+class person:
+    def __init__(self, name,age):
+        self.name = name
+        self.age = age
+
+    def say_hellow(self, to_name):
+        print("hi." + to_name + " 나는 " + self.name)
+
+    def introduce(self):
+        print("내 이름은 " + self.name + " 그리고 나는 " + str(self.age) + " 살이야")
+
+wonie = person("워니",20) ## 클래스 속 오브잭트들은 str만 받아드려져서 그런지 숫자형 변수가 아닌 문자형 변수로 변형시켜야한다.
+jenny = person("제니",30) ## 숫자에 "" 하던지 아니면 위의 self.age를 str(self.age)로 바꿔야한다.
+
+wonie.say_hellow("철수")
+jenny.say_hellow("미지")
+
+wonie.introduce()
+jenny.introduce()
+
+class police(person): ## 클래스 안에 클래스를 집어 넣을수 있다. (person을 상속시킨 개념)
+    def arrest(self, to_arrest):
+        print(" 넌 체포됐다, "+ to_arrest)
+
+class programmer(person):
+    def program(self, to_program):
+        print(" 다음엔 뭘 만들지? 아 이걸 만들어야겠네 :  " + to_program)
+
+wonie = person("워니",20)
+jenny = police("제니",21)
+michael = programmer("마이클",22)
+
+wonie.introduce()
+jenny.introduce()
+michael.introduce()
+
+jenny.arrest("워니")
+michael.program("게임")
+
+## wonie.arrest("제니") ## 위에 wonie는 person 클래스만 받았기에 다른 클래스인 police 속 arrest 오브젝트를 쓸수가 없다.
+
+
+## 모듈과 패키지##
+
+## 폴더를 생성한다 .py이며 폴더 이름이 패키지 이름이다. 그 안에 모듈들을 만든다 .  패키지 = 모듈들의 합
+## 폴더가 패키지라는 특성이라고 알려주기 위해서는 __init__.py라는 파일을 패키지로 지정 할 폴더 안에 만들어야한다.
+
+from animal import dog
+from animal import cat
+
+d = dog.dog()
+d.hi() ## 현재 뭐가 문제인지 모르겠다. 테크워니 보이 1시간짜리 파이썬을 따라하고 있는데 오류를 모르겠으니 다른 영상으로 해결해보기...
