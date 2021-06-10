@@ -47,15 +47,15 @@ print(not(1>2))
 # subway("사당").Station # Station에 ()를 붙이면 오류가 뜬다. 왜냐하면 인수가 필요하기 때문이다. 내가 그렇게 설정했으니...
 #                             # 그렇다고 subway("사당").Station("사당") 하면 두번 뜬다 ㅋ.
 
+## 퀴즈1의 편한? 정답 ##
+# class subway:
+#     def __init__(self,station_name ):
+#         self.station_name = station_name
+#         print(station_name+"행 열차가 들어오고 있습니다.")
 
-class subway:
-    def __init__(self,station_name ):
-        self.station_name = station_name
-        print(station_name+"행 열차가 들어오고 있습니다.")
-
-subway("사당") 
-subway("신도림")
-subway("인천공항")
+# subway("사당") 
+# subway("신도림")
+# subway("인천공항")
 
 # class person:
 #     name = "워니"
@@ -78,6 +78,125 @@ subway("인천공항")
 #                     # 아 알았다 .멍청하게도 subway().station_name이 아닌 subway().station()을 해야한다... 당연한거다.. 20분동안 고민했네..
 
 
+## 연산 ## 
+
+# print(abs(-5))
+# print(pow(4,2))
+# print(max(5,12))
+# print(min(5,12))
+# print(round(3.14))
+# print(round(4.99))
+
+# from math import *
+# print(floor(4.99)) # 내림
+# print(ceil(3.14)) #올림
+# print(sqrt(16)) #제곱근  
+
+# from random import *
+
+# print(random())
+
+# print(randint(1,45))
 
 
+# ## 퀴즈2  정답##
+
+# offline_study = randint(4,28)
+# print("오프라인 스터디 모임 날짜는 매월 "+str(offline_study)+" 일로 선정되었습니다.")
+
+# offline_study = randint(1,28) ## 간단히 쓴 정답을 조금 풀어쓴 답.
+# while(1):
+
+#     if( 0<offline_study<4 ):
+        
+#             print("1,2,3  중 한 개가 선택되어 다시 뽑습니다.")
+#             continue
+
+        
+#     else:
+#         print("오프라인 스터디 모임 날짜는 매월 "+str(offline_study)+" 일로 선정되었습니다.")    
+#         break
+            ## 두번째 변경에서 내가 좀 걸린이유 : c언어랑 코드 쓰는법을 햇갈림.. c언어에서는 if { 자동으로 쓰는 습관이 예기치 않게 있음.}
+
+## 문자열 ##
+
+# sentence = """
+# 찬란했던 과거를 추억하고,
+# 현재의 상황에 대해 과거를 후회하며,
+# 허망된 미래를 위해 과거를 망각하며 도망친다.
+# """
+
+# print(sentence)
+
+# jumin= "990120-1234567"
+
+# print(" 성별 : " + jumin[7])
+# print("년도 : "+ jumin[0:2])
+# print("뒤 7자리 : "+jumin[7:])
+# print("뒤 7자리(뒷자리부터) : "+jumin[-7:]) ## -는 맨 뒷숫자이 7이 0으로 취급하여, 시작한다.
+
+# sentence = "Python is Amazing"
+# print(sentence.lower())
+# print(sentence.upper())
+# print(sentence[0].isupper())
+# print(len(sentence))
+# print(sentence.replace("Python","Java"))
+
+# print(sentence.index("n"))
+
+# index=sentence.index("n")
+# print(sentence.index("n",index +1))
+
+# print(sentence.find("n"))
+#             ## find함수는 특정 단어가 없을경우 프로그램을 오류나지않고 -1로 출력 해주며, index는 특정단어가 없을경우 바로 에러를 낸다.
+# print(sentence.count("n"))
+
+## 문자열 ##
+
+
+        ##print 방법 1##
+print("나는 %d입니다." % 20)
+print("나는 %s을 좋아해요."%"파이썬") ## 숫자, 문자 둘다 됨.
+print("apple의 첫글자는 %c입니다."%"a")
+
+print("나는 %s색과 %s을 좋아해요"%("초록","핑크"))
+
+
+        ##print 방법 2##
+
+print("나는 {}살입니다.".format(20))
+print("나는 {}색과 {}색을 좋아해요.".format("파란","핑크"))
+print("나는 {0}색과 {1}색을 좋아해요.".format("파란","핑크"))
+print("나는 {1}색과 {0}색을 좋아해요.".format("파란","핑크"))
+
+
+        ##print 방법 3##
+
+print("나는 {age}살이며,  {color}색을 좋아해요.".format(age=20, color="빨간"))
+
+
+        ##print 방법 4##
+
+age= 20
+color = "빨간"
+print(f"나는 {age}살이며,  {color}색을 좋아해요.") ## 뭐 만들떄 편할거같네  개인적으로 방법 1,4 ->2 ->3 순으로 편할듯.
+
+        ##탈출문자##
+
+
+print("저는 \"나도코딩\"입니다.") ## 문장 내에서 따음표처럼 사용 가능.
+print("저는 \'나도코딩\'입니다.")
+
+print("\\") ## \\는 문장내에서 \이다. 출력시에도 \로 나온다. 그러므로 파일 위치 경로를 쓸때 자동으로 한개의 \ 만 나오지만 파이썬에 입력하고싶으면 \\두번 해줘야한다.
+
+print("Red Apple\rPine") ## \r글자 = 커서를 맨 앞으로 이동한다 . Red Apple 에서는 "Red "가 커서의 맨 처음이라서 Pine 으로 대체한 것.
+
+print("Redd\bApple") ## \b = \b의 바로 앞 한글자를 삭제
+
+print("Red \t apple") ##\t = tap키
+
+
+ ## 퀴즈 3 ## // 알바 다녀오고 하기.
+
+ 
 
