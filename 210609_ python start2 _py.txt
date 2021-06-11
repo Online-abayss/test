@@ -154,49 +154,140 @@ print(not(1>2))
 ## 문자열 ##
 
 
-        ##print 방법 1##
-print("나는 %d입니다." % 20)
-print("나는 %s을 좋아해요."%"파이썬") ## 숫자, 문자 둘다 됨.
-print("apple의 첫글자는 %c입니다."%"a")
+#         ##print 방법 1##
+# print("나는 %d입니다." % 20)
+# print("나는 %s을 좋아해요."%"파이썬") ## 숫자, 문자 둘다 됨.
+# print("apple의 첫글자는 %c입니다."%"a")
 
-print("나는 %s색과 %s을 좋아해요"%("초록","핑크"))
-
-
-        ##print 방법 2##
-
-print("나는 {}살입니다.".format(20))
-print("나는 {}색과 {}색을 좋아해요.".format("파란","핑크"))
-print("나는 {0}색과 {1}색을 좋아해요.".format("파란","핑크"))
-print("나는 {1}색과 {0}색을 좋아해요.".format("파란","핑크"))
+# print("나는 %s색과 %s을 좋아해요"%("초록","핑크"))
 
 
-        ##print 방법 3##
+#         ##print 방법 2##
 
-print("나는 {age}살이며,  {color}색을 좋아해요.".format(age=20, color="빨간"))
-
-
-        ##print 방법 4##
-
-age= 20
-color = "빨간"
-print(f"나는 {age}살이며,  {color}색을 좋아해요.") ## 뭐 만들떄 편할거같네  개인적으로 방법 1,4 ->2 ->3 순으로 편할듯.
-
-        ##탈출문자##
+# print("나는 {}살입니다.".format(20))
+# print("나는 {}색과 {}색을 좋아해요.".format("파란","핑크"))
+# print("나는 {0}색과 {1}색을 좋아해요.".format("파란","핑크"))
+# print("나는 {1}색과 {0}색을 좋아해요.".format("파란","핑크"))
 
 
-print("저는 \"나도코딩\"입니다.") ## 문장 내에서 따음표처럼 사용 가능.
-print("저는 \'나도코딩\'입니다.")
+#         ##print 방법 3##
 
-print("\\") ## \\는 문장내에서 \이다. 출력시에도 \로 나온다. 그러므로 파일 위치 경로를 쓸때 자동으로 한개의 \ 만 나오지만 파이썬에 입력하고싶으면 \\두번 해줘야한다.
-
-print("Red Apple\rPine") ## \r글자 = 커서를 맨 앞으로 이동한다 . Red Apple 에서는 "Red "가 커서의 맨 처음이라서 Pine 으로 대체한 것.
-
-print("Redd\bApple") ## \b = \b의 바로 앞 한글자를 삭제
-
-print("Red \t apple") ##\t = tap키
+# print("나는 {age}살이며,  {color}색을 좋아해요.".format(age=20, color="빨간"))
 
 
- ## 퀴즈 3 ## // 알바 다녀오고 하기.
+#         ##print 방법 4##
 
- 
+# age= 20
+# color = "빨간"
+# print(f"나는 {age}살이며,  {color}색을 좋아해요.") ## 뭐 만들떄 편할거같네  개인적으로 방법 1,4 ->2 ->3 순으로 편할듯.
 
+#         ##탈출문자##
+
+
+# print("저는 \"나도코딩\"입니다.") ## 문장 내에서 따음표처럼 사용 가능.
+# print("저는 \'나도코딩\'입니다.")
+
+# print("\\") ## \\는 문장내에서 \이다. 출력시에도 \로 나온다. 그러므로 파일 위치 경로를 쓸때 자동으로 한개의 \ 만 나오지만 파이썬에 입력하고싶으면 \\두번 해줘야한다.
+
+# print("Red Apple\rPine") ## \r글자 = 커서를 맨 앞으로 이동한다 . Red Apple 에서는 "Red "가 커서의 맨 처음이라서 Pine 으로 대체한 것.
+
+# print("Redd\bApple") ## \b = \b의 바로 앞 한글자를 삭제
+
+# print("Red \t apple") ##\t = tap키
+
+
+#  ## 퀴즈 3 ## // 알바 다녀오고 하기.
+
+
+
+
+
+## 리스트 ##
+
+
+# subway = [ 10,20,30]
+# print(subway)
+
+# mix_list = ["조세호", 20, True] ## 다양한 자료형과 사용가능
+# print(mix_list)
+
+
+# subway = ["유재석", "조세호", "박명수"]
+# print(subway)
+
+
+# print(subway.index("조세호"))
+
+# subway.append("하하") ## append() = 끝에 특정단어를 추가.
+# print(subway)
+
+# subway.insert(1,"정형돈") ## insert(어디에 넣고, 어떤데이터)
+# print(subway)
+
+# print(subway.pop()) ## pop() = 마지막의 배열을 하나 뺌
+
+# print(subway.count("하하"))  ## count() = 특정단어가 몇개있는지[ 단 하하는 위에 pop으로 마지막단어인 하하가 빠져서 0개로 출력]
+# print(subway.count("조세호")) ## count() = 특정단어가 몇개있는지
+
+#                 #정렬방법 두가지!#
+
+# num_list = [ 5,3,2,1,4]
+# print(sorted(num_list)) ## 정렬된 신규 데이터. ##오름차순
+
+# print(sorted(num_list,reverse=True)) ## 내림차순
+
+
+
+# num_list = [ 5,3,2,1,4]
+# num_list.sort() ## 정렬된 기존 데이터
+# print(num_list)
+
+# num_list.sort(reverse=True)
+# print(num_list)
+
+
+# num_list = [5,3,2,1,4]
+# num_list.reverse() ## sort는 작은 -> 큰수 // reverse는 그냥 리스트 배열을 반대로..
+# print(num_list)
+
+# num_list.extend(mix_list) ## extend = 다른 리스트 함수를 추가할려는 리스트에 추가.
+# print(num_list)
+
+# num_list.clear() ## clear() list 삭제.
+# print(num_list) 
+
+## 딕션너리 ##
+
+# cabinet = {3 : "유재석", 100:"김태호"}
+# print(cabinet)
+# print(cabinet[3])
+# print(cabinet.get(3))
+
+# # print(cabinet[5]) ## cabinet에 "5"라는 key가 없기에 안나오고, 바로 프로그램이 종료된다.
+# # print("hi") ## 오류가 떴기에 뒤에 문장을 시도하지 않고 종료됨..
+
+# print(cabinet.get(5)) ## cabinet에 없지만 오류가 아닌 None으로 뜨고 뒤에 문장도 이어진다
+# print("hi")
+
+# print(3 in cabinet) ## cabinet에 찾으려는 key값이 있는지 여부
+# print(5 in cabinet)
+
+# cabinet = {"A-3" : "유재석", "B-100":"김태호"}
+# print(cabinet["A-3"])
+
+# cabinet["C-20"]="조세호" ## 딕션너리 확장가능
+# print(cabinet)
+
+# cabinet["C-20"] = "김종국" ## 기존의 key와 같으면 기존의 key에 value값이 갱신된다.
+# print(cabinet)
+
+# del cabinet["A-3"] ## A-3에 대한 key를 입력하면 key와 value값이 동시에 사라진다.
+# print(cabinet)
+
+# print(cabinet.keys()) ## 키들만 출력
+# print(cabinet.values()) ## 벨류들만 출력
+# print(cabinet.items()) ## 키들과 벨류들을 출력
+# cabinet.clear() ## 딕션너리 삭제.
+# print(cabinet)
+
+## 튜플 ##
