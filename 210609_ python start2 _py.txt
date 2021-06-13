@@ -198,7 +198,12 @@ print(not(1>2))
 
 #  ## 퀴즈 3 ## // 알바 다녀오고 하기.
 
+# url = "http://naver.com"
+# my_str = url.replace("http://","")
+# my_str = my_str[:my_str.index(".")]
+# password = my_str[:3] + str(len(my_str)) + str(my_str.count("e")) + "!"
 
+# print(password)
 
 
 
@@ -291,3 +296,188 @@ print(not(1>2))
 # print(cabinet)
 
 ## 튜플 ##
+
+# menu = ("돈까스", "고구마치즈돈까스")
+
+# print(menu[0])
+# print(menu[1])
+
+#         ### menu.add 라던지 menu.remove() 등 불가능 불변형이라서.
+
+# name = "김종국"
+# age = 20
+# hobby = "코딩"
+# print(name, age, hobby)
+
+# (name, age, hobby) = ("유재석", 25, "파이썬")
+# print(name, age, hobby)
+
+## 세트 ## 
+            ## 리스트는 abc = [] / 딕션너리는 d= {abc : 100} /  튜플 e = () /  세트 = f = {}
+
+        ## 세트는 중복안되며, 순서가 없음
+
+# my_set = {1,2,3,3,3}
+# print(my_set)
+
+# Java = {"유재석", "김태호", "양세형"}
+# Python = set(["유재석", "박명수"]) ## 리스트밖에 set으로 묶으면 자료형태는 set으로 바뀐다.
+
+#     #교집합
+# print(Java & Python)
+# print(Java.intersection(Python))
+
+#     #합집합
+# print(Java | Python)
+# print(Java.union(Python))
+
+#     #차집합
+# print(Java - Python)
+# print(Java.difference(Python))
+
+#     # 집합에서의 갯수 추가
+# Python.add("김태호")
+# print(Python)
+
+#     # 집합에서의 갯수 삭제
+# Java.remove("김태호")
+# print(Java)
+
+
+## 자료구조의 변경 ##
+
+# menu = {"커피", "우유","주스"}
+# print(menu, type(menu))
+
+# menu = list(menu)
+# print(menu, type(menu))
+
+# menu = tuple(menu)
+# print(menu, type(menu))
+
+# menu = set(menu)
+# print(menu, type(menu))
+
+## 퀴즈4 ##
+
+# from random import *
+# # lst = [1,2,3,4,5]
+# # print(lst)
+# # shuffle(lst) ## 무작위로 섞는 함수
+# # print(lst)
+# # print(sample(lst,1)) ## sample() 특정데이터에서 몇개만큼 뽑겠다는 함수
+
+# users = range(1,21) # 1 부터 20까지 숫자를 생성
+# print(users) # type이 range라서 1....20 까지 안나옴
+# print(type(users))
+# users = list(users) 
+# print(users)
+
+# shuffle(users)
+# win = sample(users,4)
+
+# print(" 당첨자 발표")
+# print("치킨 당첨자 = " + str(win[0]) )
+# print("커피 당첨자 = " , str(win[1]) , str(win[2]), str(win[3]))
+# print(" 축하합니다.")
+
+# ## 또다른 프린트.
+
+# print("치킨 당첨자 = {0}".format(win[0]))
+# print("치킨 당첨자 = {0}".format(win[1:]))
+
+        ## 개인적으로 이런 버전 말고 일일이 넣어서 추가하는 방식으로 해보고싶음
+        ## ex) 테크워니 보이에서 나온 과일 세기 
+
+
+## if ##
+
+# weather = input("오늘 날씨는 어때요? : ") ## c언어의 scan_f 같은 친구의 역활을 한다.
+# if weather == "비":
+#     print("우산을 챙기세요")
+# elif weather == "미세먼지":
+#     print("마스크를 챙기세요")
+# else:
+#     print("준비물이 필요 없어요.")
+
+# temp = int(input("기온은 어떄요? (숫자만 입력)"))
+# if 30 <= temp:
+#     print(" 너무 더워요.")
+# elif 10<= temp:
+#     print(" 적당한 날씨에요")
+# elif 0<=temp:
+#     print("외투를 챙기세요")
+# else:
+#     print("너무 추워요.")
+
+## for ##
+
+# for watiring in [0,1,2,3,4]:
+#     print("대기번호 {0}".format(watiring))
+
+# for waiting in range(5):
+#     print("대기번호 {0}".format(waiting))
+
+# for waiting in range(10,20):
+#     print("대기번호 {0}".format(waiting))
+
+# Hero = ["아이언맨", "토르", " 아이엠 그루트"]
+# for customer in Hero:
+#     print (" {0}님 출격 준비가 되었습니다".format(customer))
+
+## while ##
+
+# Hero = "토르"
+# index = 5
+# while index >=1:
+#     print("{0}, 커피가 준비되었습니다. {1} 번 남았습니다.".format(Hero,index))
+#     index -= 1
+#     if index ==0:
+#         print("커피는 폐기처분되었습니다.")
+
+        ## while True: 는 break나 exit? 로 나가는거 아니면 무한루프로 돌아간다.
+            ## 이럴때 대처법은 ctrl + C 누르면 강제종료된다.
+
+# customer = "토르"
+# person = "Unknown"
+
+# while person != customer :
+#     print("{0}, 커피가 준비되었습니다.".format(customer))
+#     person = input("이름이 어떻게 되세요? ")
+
+## continue / break ##
+# absent = [2,5]
+# no_book = [7]
+# for student in range(1,11):
+#     if student in absent:
+#         continue
+#     elif student in no_book:
+#         print("오늘 수업은 여기까지 {0}는 교무실로 따라와".format(student))
+#         break
+#     print("{0}야 책을 읽어봐".format(student))
+
+# students =[1,2,3,4,5]
+# print(students)
+# students = [i+100 for i in students] ## students에 1,2,3,4,5가 들어있는데 거기에 100을 더한값을 적용하는것.
+# print(students)
+
+# students = ["Iron amn","Thor", "I am groot"]
+# students = [len(i) for i in students] ## 문자 길이
+# print(students)
+
+# students = [i for i in range(1,6)]
+# print(students)
+
+# students = ["Iron amn","Thor", "I am groot"]
+# students = [i.upper() for i in students]
+# print(students)
+
+## 퀴즈 5 ##
+
+
+
+
+
+## 함수 ##
+
+
