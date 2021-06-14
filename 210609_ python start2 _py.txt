@@ -480,4 +480,96 @@ print(not(1>2))
 
 ## 함수 ##
 
+# def open_account():
+#         print("새로운 계좌가 생성되었습니다.")
+# open_account()
+
+# def deposit(balance, money): ## 예금의 정보
+#         print("입금이 완료되었습니다. 잔액은 {0} 원 입니다.".format(balance + money)) 
+#         return balance + money ## balance의 반환값을 balance + money 로 
+
+# def withdraw(balance, money): ## balance =잔액
+#         if balance >= money:
+#                 print("출금이 완료되었습니다. 잔액은 {0}입니다.".format(balance-money))
+#                 return balance-money
+#         else:
+#                 print("잔액이 부족하여 출금이 완료되지 않았습니다. 잔액은 {0}입니다.".format(balance))
+#                 return balance
+
+# def withdraw_night(balance, money): 
+#         commission = 100
+#         return commission, balance-money-commission ## 커미션과 최종 출금금액을 같이 보여줌
+
+
+
+# balance = 0
+# balance = deposit(balance, 1000)
+# print(balance)
+
+# commission, balance = withdraw_night(balance, 500)
+# print("수수료{0}원이며, 잔액은 {1}원 입니다.".format(commission,balance))
+
+
+## 기본값 ##
+
+# def profile(name, age, main_lang): ## \하면 두문장처럼 보이지만 한문장이다
+#         print("이름 : {0},\t 나이 : {1} \t 주 사용 언어: {2}"  \
+#                 .format(name, age, main_lang))
+
+# profile("유재석",20,"파이썬")
+# profile("김태호",25,"자바")     
+
+
+
+# def profile(name, age= 17, main_lang="파이썬"): ## 이렇게 안에 설정해놓으면 기본값으로 된다.
+#         print("이름 : {0},\t 나이 : {1} \t 주 사용 언어: {2}"  \
+#                 .format(name, age, main_lang))
+# profile("유재석")
+# profile("김태호")
+    
+# def profile(name, age, main_lang):
+#         print(name, age, main_lang)
+
+# profile(name="유재석",main_lang="파이썬",age=20)
+# profile(main_lang="자바",age=25,name="김태호" )
+
+## 가변 인자 ##
+
+# def profile(name, age, lang1, lang2, lang3, lang4, lang5):
+#         print("이름 : {0}\t 나이 : {1}\t".format(name, age), end=" ") ## end = "" 는 원래 줄바꿈으로 진행했으나, 그냥 이어쓰기로 한다는 뜻. 
+#         print(lang1,lang2,lang3,lang4,lang5)
+
+# profile("유재석",20,"파이썬","자바","C","","")
+# profile("김태호",25,"swift","","","","")
+
+# def profile(name, age, *language): ## 사용자가 원하는만큼 넣을수 있게함
+#         print("이름 : {0}\t 나이 : {1}\t".format(name, age), end=" ") ## end = "" 는 원래 줄바꿈으로 진행했으나, 그냥 이어쓰기로 한다는 뜻. 
+#         for lang in language: ## 그러므로 language 안에 포함된 것들은 lang에 넣어버리기
+#                 print(lang, end="")
+#         print()
+
+# profile("유재석",20, "파이썬" ,"자바","C","C++")  ## 위에꺼의 장점은 위위에 꺼는 지정한 크기만큼만 쓸수 있지만 이것은 지정한 크기를 넘어서 계속 늘어나면서 쓸수 있기에
+                                                        ## 편리하다.
+# profile("김태호",25,"swift")
+
+## 지역변수와 전역변수 ##
+gun = 10
+def checkpoint(soldiers): ## 경계근무
+        global gun # 전역 공간에 있는 gun 사용 / 지역변수가 아닌 전체에서 gun이라는 것을 하나로 통일 하겠다는 뜻.   
+        gun = gun - soldiers ## 여기서 두번째 gun = 'gun' - soldiers 의 'gun'은 지역변수라고 하며, 위에 gun = 10 의 gun이랑은 다른 함수이다. c언어에서도 따로 지정해야 했었다.
+        print("[함수 내] 남은 총 : {0}".format(gun))
+
+def checkpoint_ret(gun,soldiers):
+        gun = gun - soldiers
+        print("[함수 내] 남은 총 : {0}".format(gun))
+        return gun ## 10 -2 = 8 값을 gun으로 최종값으로 호출해서 밑에 gun이 8이 됨
+
+print("전체 총 : {0}".format(gun))
+# checkpoint(2) ## 2명이 경계근무 나감
+gun = checkpoint_ret(gun,2)
+
+
+print("남은 총 : {0}".format(gun))        
+
+
 
