@@ -553,23 +553,99 @@ print(not(1>2))
 # profile("김태호",25,"swift")
 
 ## 지역변수와 전역변수 ##
-gun = 10
-def checkpoint(soldiers): ## 경계근무
-        global gun # 전역 공간에 있는 gun 사용 / 지역변수가 아닌 전체에서 gun이라는 것을 하나로 통일 하겠다는 뜻.   
-        gun = gun - soldiers ## 여기서 두번째 gun = 'gun' - soldiers 의 'gun'은 지역변수라고 하며, 위에 gun = 10 의 gun이랑은 다른 함수이다. c언어에서도 따로 지정해야 했었다.
-        print("[함수 내] 남은 총 : {0}".format(gun))
+# gun = 10
+# def checkpoint(soldiers): ## 경계근무
+#         global gun # 전역 공간에 있는 gun 사용 / 지역변수가 아닌 전체에서 gun이라는 것을 하나로 통일 하겠다는 뜻.   
+#         gun = gun - soldiers ## 여기서 두번째 gun = 'gun' - soldiers 의 'gun'은 지역변수라고 하며, 위에 gun = 10 의 gun이랑은 다른 함수이다. c언어에서도 따로 지정해야 했었다.
+#         print("[함수 내] 남은 총 : {0}".format(gun))
 
-def checkpoint_ret(gun,soldiers):
-        gun = gun - soldiers
-        print("[함수 내] 남은 총 : {0}".format(gun))
-        return gun ## 10 -2 = 8 값을 gun으로 최종값으로 호출해서 밑에 gun이 8이 됨
+# def checkpoint_ret(gun,soldiers):
+#         gun = gun - soldiers
+#         print("[함수 내] 남은 총 : {0}".format(gun))
+#         return gun ## 10 -2 = 8 값을 gun으로 최종값으로 호출해서 밑에 gun이 8이 됨
 
-print("전체 총 : {0}".format(gun))
-# checkpoint(2) ## 2명이 경계근무 나감
-gun = checkpoint_ret(gun,2)
-
-
-print("남은 총 : {0}".format(gun))        
+# print("전체 총 : {0}".format(gun))
+# # checkpoint(2) ## 2명이 경계근무 나감
+# gun = checkpoint_ret(gun,2)
 
 
+# print("남은 총 : {0}".format(gun))        
 
+
+## 퀴즈7 ##
+
+# def str_weight(height, gender):
+#         if gender =="남자":
+#                 return height * height  * 22 
+               
+#         else:
+#                 return height * height  * 21 
+                
+# height = 175
+# gender = "남자"
+
+# weight = round(str_weight(height/100,gender),2) ## 왜 수식 안에다가 /100 하면 6737.5가 나오지.. 
+# print(weight)
+# print("키 {0}cm 남자의 표준 체중은 {1}입니다.".format(height,weight))
+
+## 표준입출력 ##
+# print("파이썬", "자바",sep= " ")
+
+# print("파이썬", "자바",sep= " vs ")
+
+# print("파이썬", "자바",sep= ",", end="?")
+
+# print("END=''는 이어쓰기가 된다." )
+
+# scores = {"수학" : 0, "영어" : 50, "코딩": 100}
+# for subject, score in  scores.items(): ## .items() 는 딕션너리를 각 키와 벨류로 분류해서 묶어서 보여줌
+#         print(subject.ljust(8), str(score).rjust(4))  ## ljust(8)은 왼쪽정렬을 하되 8크기를 확보해서 한다. rjsuct는  4크기를 확보해서 오른쪽 정렬한다.
+
+# for num in range(1,21):
+#         print("대기번호 : " + str(num).zfill(3)) ## .zfill()은 001 002 처럼 빈공간에 0을 채워준다 안에 숫자는 크기를 말한다.
+
+# print("{0:>10}".format(500)) ## 빈공간은 그대로 두고, 오른쪽 정렬을 하되, 총10자리를 확보
+# print("{0:<+10}".format(500)) ## 빈공간은 그대로 두고, 왼쪽 정렬을 하되, 총10자리를 확보, 양수일땐 + 음수일땐 - 표시
+# print("{0:>+10}".format(-500))
+
+# print("{0:_<10}".format(-500)) ## 빈공간은 _로 채우고, 왼쪽 정렬을 하되, 총 10자리를 확보
+
+# print("{0:,}".format(100000000)) ## 3자리 마다 , 를 넣기
+# print("{0:+,}".format(100000000)) ## 3자리 마다 , 를 넣고, + - 를 붙이기
+
+# print("{0:^<+30,}".format(100000000)) ## 빈공간은 ^로 채우고, 왼쪽정렬을 하되, 총 30자리를 확보, +-를 표시하고, 3자리 마다 ,붙이기
+
+# print("{0:f}".format(5/3)) ## 소수점 표시
+# print("{0:.2f}".format(5/3)) ## 소수점 3번째에서 반올림하기.
+
+## 파일 입출력##
+
+# score_file = open("score.txt", "w", encoding="utf8" ) ## w는 쓰기
+# print("수학 : 0", file=score_file)
+# print("영어 : 50", file=score_file)
+# score_file.close()
+
+# score_file = open("score.txt","a",encoding="utf8") ## a는 이어쓰기
+# score_file.write("과학 : 80")
+# score_file.write("\n코딩 : 100") ## .write로 하면 자동으로 줄바꿈이 안된다 . / print랑 차이점
+# score_file.close()
+
+# score_file = open("score.txt","r",encoding="utf8") ## r은 읽기
+# print(score_file.read())
+# score_file.close()
+
+# score_file = open("score.txt", "r", encoding="utf8") ## 이방법은 한줄씩 읽고 싶을때 하는 방법
+# print(score_file.readline(),end="")
+# print(score_file.readline(),end="")
+# print(score_file.readline(),end="")
+# print(score_file.readline(),end="") 
+# score_file.close
+
+# score_file = open("score.txt","r",encoding="utf8") ## 몇줄인지 모르지만 다 읽고 싶을때
+# while(1):
+#         line = score_file.readline() ## 다만 짧은 코드로 전체 보고싶으면 걍 .read() 로 하면될듯. 
+#                     ## 궁금한점은 이건 라인에 아무것도 없을때까지라서 문단마다 보고싶을땐 좋을듯
+#         if not line:
+#                 break
+#         print(line,end="")
+# score_file.close()
