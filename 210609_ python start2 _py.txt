@@ -649,3 +649,128 @@ print(not(1>2))
 #                 break
 #         print(line,end="")
 # score_file.close()
+
+## pickle 피클 ##
+
+# import pickle
+# profile_file = open("profile.pickle", "wb")
+# profile = {"이름 ":"박명수", "나이":30, "취미":["축구","골프","코딩"]}
+# print(profile)
+# pickle.dump(profile, profile_file) ## profile에 있는 정보를 file에 저장
+# profile_file.close()
+
+# import pickle
+# profile_file = open("profile.pickle","rb") ## 피클 파일 열기
+# profile = pickle.load(profile_file) ## 피클 파일 읽기
+# print(profile)
+# profile_file.close() ## 피클 파일 닫기
+
+# import pickle
+
+# with open("profile.pickle","rb") as profile_file: ## profile.pickle 불러서 profile_file로 변수로 저장하여 pickle.load로 불러오기.
+#         print(pickle.load(profile_file)) ## 장점 close()를 안해도 된다.
+
+# with open("study.txt", "w", encoding="utf8") as study_file: ## 편하게 써서 저장도 된다.
+#         study_file.write("파이썬을 열심히 공부하고 있어요") 
+
+# with open("study.txt","r",encoding="utf8") as study_file: ## 편하게 읽기 가능하다
+#         print(study_file.read())
+
+## 클래스 ##
+
+# class Unit:
+#         def __init__(self,name, hp,damage):
+#                 self.name = name
+#                 self.hp = hp
+#                 self.damage = damage
+#                 print("{0} 유닛이 생성되었습니다.".format(self.name))
+#                 print("체력 {0}, 공격력 {1}".format(self.hp, self.damage))
+
+# marine1 = Unit("마린",40,5)
+# marine2 = Unit("마린",40,5)
+# tank = Unit("탱크",150,35)
+
+## 맴버 변수 ##
+# class Unit:
+#         def __init__(self,name, hp,damage):
+#                 self.name = name
+#                 self.hp = hp
+#                 self.damage = damage
+#                 print("{0} 유닛이 생성되었습니다.".format(self.name))
+#                 print("체력 {0}, 공격력 {1}".format(self.hp, self.damage))
+
+# wraith1 = Unit("레이스",80,5)
+# print("유닛 이름 : {0}, 공격력 : {1}".format(wraith1.name, wraith1.damage)) ## 맴버 변수를 외부에서 사용 가능
+
+# wraith2 = Unit("빼앗은 레이스",80,5)
+# wraith2.clocking = True ## 추가로 외부에서 변수를 만들어서 쓸수 있다.
+
+# if wraith2.clocking == True: 
+#         print("{0}는 현재 클로킹 상태입니다.".format(wraith2.name)) ## 레이스2에만 클로킹 설정해놔서 레이스1에는 class Unit에 없기에 적용이 안된다.
+
+
+## 매소드 ##
+
+# class Unit:
+#         def __init__(self,name, hp,damage):
+#                 self.name = name
+#                 self.hp = hp
+#                 self.damage = damage
+#                 print("{0} 유닛이 생성되었습니다.".format(self.name))
+#                 print("체력 {0}, 공격력 {1}".format(self.hp, self.damage))
+        
+# class AttacUnit:
+#         def __init__(self,name, hp,damage):
+#                 self.name = name
+#                 self.hp = hp
+#                 self.damage = damage
+        
+#         def attack(self, location):
+#                 print("{0} : {1} 방향으로 적군을 공격 합니다. [공격력 {2}]"\
+#                         .format(self.name,location,self.damage)) ## self는 정의된 함수내에서 명령대로 사용하겠다는 선언문? 같은개념 / location은 없기에 그냥 location 쓰겟다.
+#         def damaged(self,damage):
+#                 print("{0} : {1} 데미지를 입었습니다.".format(self.name,damage))
+#                 self.hp -= damage
+#                 print("{0} : 현재 체력은 {1} 입니다.".format(self.name, self.hp))
+#                 if self.hp <=0:
+#                         print("{0} : 파괴되었습니다.".format(self.name))
+
+# firebet1 = AttacUnit("파이어뱃",50,16)
+# firebet1.attack("5시")
+
+# firebet1.damaged(25)
+# firebet1.damaged(25)
+
+## 상속 ##
+
+class Unit:
+        def __init__(self,name, hp):
+                self.name = name
+                self.hp = hp
+    
+        
+class AttacUnit(Unit): ## 공격유닛은 유닛을 상속받아서 정의하게 됨.
+        def __init__(self,name, hp,damage):
+                # self.name = name  ## 유닛을 상속했기에 필요 없어짐.
+                # self.hp = hp
+                Unit.__init__(self,name,hp) ## 이렇게 하면 유닛을 상속한다.
+                self.damage = damage
+        
+
+        def attack(self, location):
+                print("{0} : {1} 방향으로 적군을 공격 합니다. [공격력 {2}]"\
+                        .format(self.name,location,self.damage)) 
+        def damaged(self,damage):
+                print("{0} : {1} 데미지를 입었습니다.".format(self.name,damage))
+                self.hp -= damage
+                print("{0} : 현재 체력은 {1} 입니다.".format(self.name, self.hp))
+                if self.hp <=0:
+                        print("{0} : 파괴되었습니다.".format(self.name))
+
+firebet1 = AttacUnit("파이어뱃",50,16)
+firebet1.attack("5시")
+
+firebet1.damaged(25)
+firebet1.damaged(25)
+
+## 다중 상속 ##
