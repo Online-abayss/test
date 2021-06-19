@@ -774,3 +774,92 @@ firebet1.damaged(25)
 firebet1.damaged(25)
 
 ## 다중 상속 ##
+
+class Unit:
+        def __init__(self,name, hp):
+                self.name = name
+                self.hp = hp
+    
+        
+class AttacUnit(Unit): ## 공격유닛은 유닛을 상속받아서 정의하게 됨.
+        def __init__(self,name, hp,damage):
+                # self.name = name  ## 유닛을 상속했기에 필요 없어짐.
+                # self.hp = hp
+                Unit.__init__(self,name,hp) ## 이렇게 하면 유닛을 상속한다.
+                self.damage = damage
+        
+
+        def attack(self, location):
+                print("{0} : {1} 방향으로 적군을 공격 합니다. [공격력 {2}]"\
+                        .format(self.name,location,self.damage)) 
+        def damaged(self,damage):
+                print("{0} : {1} 데미지를 입었습니다.".format(self.name,damage))
+                self.hp -= damage
+                print("{0} : 현재 체력은 {1} 입니다.".format(self.name, self.hp))
+                if self.hp <=0:
+                        print("{0} : 파괴되었습니다.".format(self.name))
+
+firebet1 = AttacUnit("파이어뱃",50,16)
+firebet1.attack("5시")
+
+firebet1.damaged(25)
+firebet1.damaged(25)
+
+class Unit:
+        def __init__(self,name, hp):
+                self.name = name
+                self.hp = hp
+    
+        
+class AttacUnit(Unit): ## 공격유닛은 유닛을 상속받아서 정의하게 됨.
+        def __init__(self,name, hp,damage):
+                # self.name = name  ## 유닛을 상속했기에 필요 없어짐.
+                # self.hp = hp
+                Unit.__init__(self,name,hp) ## 이렇게 하면 유닛을 상속한다.
+                self.damage = damage
+        
+
+        def attack(self, location):
+                print("{0} : {1} 방향으로 적군을 공격 합니다. [공격력 {2}]"\
+                        .format(self.name,location,self.damage)) 
+        def damaged(self,damage):
+                print("{0} : {1} 데미지를 입었습니다.".format(self.name,damage))
+                self.hp -= damage
+                print("{0} : 현재 체력은 {1} 입니다.".format(self.name, self.hp))
+                if self.hp <=0:
+                        print("{0} : 파괴되었습니다.".format(self.name))
+
+firebet1 = AttacUnit("파이어뱃",50,16)
+firebet1.attack("5시")
+
+firebet1.damaged(25)
+firebet1.damaged(25)
+class Unit:
+        def __init__(self,name, hp):
+                self.name = name
+                self.hp = hp
+    
+        
+class AttacUnit(Unit): ## 공격유닛은 유닛을 상속받아서 정의하게 됨.
+        def __init__(self,name, hp,damage):
+                # self.name = name  ## 유닛을 상속했기에 필요 없어짐.
+                # self.hp = hp
+                Unit.__init__(self,name,hp) ## 이렇게 하면 유닛을 상속한다.
+                self.damage = damage
+        
+
+        def attack(self, location):
+                print("{0} : {1} 방향으로 적군을 공격 합니다. [공격력 {2}]"\
+                        .format(self.name,location,self.damage)) 
+        def damaged(self,damage):
+                print("{0} : {1} 데미지를 입었습니다.".format(self.name,damage))
+                self.hp -= damage
+                print("{0} : 현재 체력은 {1} 입니다.".format(self.name, self.hp))
+                if self.hp <=0:
+                        print("{0} : 파괴되었습니다.".format(self.name))
+
+firebet1 = AttacUnit("파이어뱃",50,16)
+firebet1.attack("5시")
+
+firebet1.damaged(25)
+firebet1.damaged(25)
