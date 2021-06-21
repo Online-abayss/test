@@ -743,17 +743,25 @@ print(not(1>2))
 
 ## 상속 ##
 
+from typing import Awaitable
+
+
 class Unit:
-        def __init__(self,name, hp):
+        def __init__(self,name, hp, speed):
                 self.name = name
                 self.hp = hp
-    
+                self.speed = speed
+        
+        def move(self, location):
+                print("[지상 유닛 이동]")
+                print("{0} : {1} 방향으로 이동합니다. [속도 {2}"\
+                        .format(self.name,location,self.speed))
         
 class AttacUnit(Unit): ## 공격유닛은 유닛을 상속받아서 정의하게 됨.
-        def __init__(self,name, hp,damage):
+        def __init__(self,name, hp, speed, damage):
                 # self.name = name  ## 유닛을 상속했기에 필요 없어짐.
                 # self.hp = hp
-                Unit.__init__(self,name,hp) ## 이렇게 하면 유닛을 상속한다.
+                Unit.__init__(self,name,hp, speed) ## 이렇게 하면 유닛을 상속한다.
                 self.damage = damage
         
 
@@ -767,7 +775,7 @@ class AttacUnit(Unit): ## 공격유닛은 유닛을 상속받아서 정의하게
                 if self.hp <=0:
                         print("{0} : 파괴되었습니다.".format(self.name))
 
-firebet1 = AttacUnit("파이어뱃",50,16)
+firebet1 = AttacUnit("파이어뱃",50,2,16)
 firebet1.attack("5시")
 
 firebet1.damaged(25)
@@ -775,91 +783,91 @@ firebet1.damaged(25)
 
 ## 다중 상속 ##
 
-class Unit:
-        def __init__(self,name, hp):
-                self.name = name
-                self.hp = hp
-    
-        
-class AttacUnit(Unit): ## 공격유닛은 유닛을 상속받아서 정의하게 됨.
-        def __init__(self,name, hp,damage):
-                # self.name = name  ## 유닛을 상속했기에 필요 없어짐.
-                # self.hp = hp
-                Unit.__init__(self,name,hp) ## 이렇게 하면 유닛을 상속한다.
-                self.damage = damage
-        
+class Flyable:
+        def __init__(self, flying_speed):
+                self.flying_speed = flying_speed
 
-        def attack(self, location):
-                print("{0} : {1} 방향으로 적군을 공격 합니다. [공격력 {2}]"\
-                        .format(self.name,location,self.damage)) 
-        def damaged(self,damage):
-                print("{0} : {1} 데미지를 입었습니다.".format(self.name,damage))
-                self.hp -= damage
-                print("{0} : 현재 체력은 {1} 입니다.".format(self.name, self.hp))
-                if self.hp <=0:
-                        print("{0} : 파괴되었습니다.".format(self.name))
+        def fly(self, name, location):
+                print("{0} : {1} 방향으로 날아갑니다. [속도 {2}]".format(name, location, self.flying_speed))
 
-firebet1 = AttacUnit("파이어뱃",50,16)
-firebet1.attack("5시")
+class FlyableAttackUnit(AttacUnit, Flyable): ##여기에 move함수를 따로 설정안하면 배틀크루져가 지상유닛 이동으로 출력된다.
+        def __init__(self, name, hp, damage, flying_speed):
+                AttacUnit.__init__(self, name, hp,0 , damage) ## 지상 속도는 0으로 처리
+                Flyable.__init__(self, flying_speed)
 
-firebet1.damaged(25)
-firebet1.damaged(25)
+        def move(self, location):
+                print("[공중 유닛 이동]")
+                self.fly(self.name, location)
+valkyrie = FlyableAttackUnit("발키리",200,6,5) 
+valkyrie.fly(valkyrie.name,"3시")
 
-class Unit:
-        def __init__(self,name, hp):
-                self.name = name
-                self.hp = hp
-    
-        
-class AttacUnit(Unit): ## 공격유닛은 유닛을 상속받아서 정의하게 됨.
-        def __init__(self,name, hp,damage):
-                # self.name = name  ## 유닛을 상속했기에 필요 없어짐.
-                # self.hp = hp
-                Unit.__init__(self,name,hp) ## 이렇게 하면 유닛을 상속한다.
-                self.damage = damage
-        
+## 매소드 오버라이딩 ## // 자식클래스에서 정의한 매소드를 쓰고 싶은 경우 ( 오버라이딩)
 
-        def attack(self, location):
-                print("{0} : {1} 방향으로 적군을 공격 합니다. [공격력 {2}]"\
-                        .format(self.name,location,self.damage)) 
-        def damaged(self,damage):
-                print("{0} : {1} 데미지를 입었습니다.".format(self.name,damage))
-                self.hp -= damage
-                print("{0} : 현재 체력은 {1} 입니다.".format(self.name, self.hp))
-                if self.hp <=0:
-                        print("{0} : 파괴되었습니다.".format(self.name))
+vulture = AttacUnit("벌쳐", 80 , 10, 20)
 
-firebet1 = AttacUnit("파이어뱃",50,16)
-firebet1.attack("5시")
+balltlecruiser = FlyableAttackUnit("배틀크루저", 500, 25, 3)
 
-firebet1.damaged(25)
-firebet1.damaged(25)
-class Unit:
-        def __init__(self,name, hp):
-                self.name = name
-                self.hp = hp
-    
-        
-class AttacUnit(Unit): ## 공격유닛은 유닛을 상속받아서 정의하게 됨.
-        def __init__(self,name, hp,damage):
-                # self.name = name  ## 유닛을 상속했기에 필요 없어짐.
-                # self.hp = hp
-                Unit.__init__(self,name,hp) ## 이렇게 하면 유닛을 상속한다.
-                self.damage = damage
-        
 
-        def attack(self, location):
-                print("{0} : {1} 방향으로 적군을 공격 합니다. [공격력 {2}]"\
-                        .format(self.name,location,self.damage)) 
-        def damaged(self,damage):
-                print("{0} : {1} 데미지를 입었습니다.".format(self.name,damage))
-                self.hp -= damage
-                print("{0} : 현재 체력은 {1} 입니다.".format(self.name, self.hp))
-                if self.hp <=0:
-                        print("{0} : 파괴되었습니다.".format(self.name))
+vulture.move("11")
+balltlecruiser.move("9시") 
 
-firebet1 = AttacUnit("파이어뱃",50,16)
-firebet1.attack("5시")
+## pass ##
 
-firebet1.damaged(25)
-firebet1.damaged(25)
+# def game_start():
+#         print("[알림] 새로운 게임을 시작합니다.")
+
+# def game_over():
+#         pass
+
+# game_start()
+# game_over() ## 패스란 아무것도 적지 않아도 그냥 넘어가고 진행한다.
+
+## super ##
+
+# class buildingUnit(Unit):
+#         def __int__(self, name, hp, location):
+#                 Unit.__init__(self, name, hp, speed) ## 상속받은 클래스를 초기화 하는 방법 1
+#                 super().__init__(name,hp,0) ## 위에거랑 다른점 / 1. self는 안쓴다. 2. super()로 써야한다. 3. 다중 상속시 순서에 영향을 미친다.
+#                 self.location = location
+
+               ## super의 다중상속의 문제점 . (순서에 영향을 미치는거) 밑에대로 하면 ABC 생성자만 나온다. 맨 처음의 상속받은 클래스만 호출되기에 ABC만 나온다.
+                       ## 다중 상속 클래스의 초기화가 필요하면 Unit.__init__ 방식으로 해야한다.
+# class ABC:
+#         def __init__(self):
+#          print("ABC 생성자")
+
+# class ABD:
+#         def __init__(self):
+#          print("ABD 생성자")
+
+# class CD(ABC,ABD):
+#         def __init__(self):
+#                 super().__init__()
+
+# test = CD()
+
+## 퀴즈 8 ##
+
+
+
+
+## 예외 처리 ##
+
+# print("나누기 전용 계산기입니다.")
+# num1 = int(input("첫 번째 숫자를 입력하세요 : "))
+# num2 = int(input("두 번째 숫자를 입력하세요 : "))
+# print("{0} / {1} = {2}".format(num1,num2,int(num1/num2))) ## 만약 첫 번째나 두번째에 한글 입력시 오류 발생 할때 처리하는 방법이 예외 처리
+
+try: ## 트라이 내부의 문장을 실행하다가 오류가 발생시 벨류에러의 문장을 실행해준다.
+
+        print("나누기 전용 계산기입니다.")
+        num1 = int(input("첫 번째 숫자를 입력하세요 : "))
+        num2 = int(input("두 번째 숫자를 입력하세요 : "))
+        print("{0} / {1} = {2}".format(num1,num2,int(num1/num2))) 
+
+except ValueError:
+        print("에러! 잘못된 값을 입력하였습니다")
+
+except ZeroDivisionError as err: ## 에러 발생시의 제로 디비젼이나 벨루 에러같은것은 트라이의 내의 문구를 실행 했을때 int문을 한글로 섰을때 따로 오류로 valueerror : 하면서 뜨거나 제로 디비젼하면서 알려준다.
+        print(err)
+
