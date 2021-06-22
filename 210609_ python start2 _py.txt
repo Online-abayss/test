@@ -743,73 +743,73 @@ print(not(1>2))
 
 ## 상속 ##
 
-from typing import Awaitable
+# from typing import Awaitable
 
 
-class Unit:
-        def __init__(self,name, hp, speed):
-                self.name = name
-                self.hp = hp
-                self.speed = speed
+# class Unit:
+#         def __init__(self,name, hp, speed):
+#                 self.name = name
+#                 self.hp = hp
+#                 self.speed = speed
         
-        def move(self, location):
-                print("[지상 유닛 이동]")
-                print("{0} : {1} 방향으로 이동합니다. [속도 {2}"\
-                        .format(self.name,location,self.speed))
+#         def move(self, location):
+#                 print("[지상 유닛 이동]")
+#                 print("{0} : {1} 방향으로 이동합니다. [속도 {2}"\
+#                         .format(self.name,location,self.speed))
         
-class AttacUnit(Unit): ## 공격유닛은 유닛을 상속받아서 정의하게 됨.
-        def __init__(self,name, hp, speed, damage):
-                # self.name = name  ## 유닛을 상속했기에 필요 없어짐.
-                # self.hp = hp
-                Unit.__init__(self,name,hp, speed) ## 이렇게 하면 유닛을 상속한다.
-                self.damage = damage
+# class AttacUnit(Unit): ## 공격유닛은 유닛을 상속받아서 정의하게 됨.
+#         def __init__(self,name, hp, speed, damage):
+#                 # self.name = name  ## 유닛을 상속했기에 필요 없어짐.
+#                 # self.hp = hp
+#                 Unit.__init__(self,name,hp, speed) ## 이렇게 하면 유닛을 상속한다.
+#                 self.damage = damage
         
 
-        def attack(self, location):
-                print("{0} : {1} 방향으로 적군을 공격 합니다. [공격력 {2}]"\
-                        .format(self.name,location,self.damage)) 
-        def damaged(self,damage):
-                print("{0} : {1} 데미지를 입었습니다.".format(self.name,damage))
-                self.hp -= damage
-                print("{0} : 현재 체력은 {1} 입니다.".format(self.name, self.hp))
-                if self.hp <=0:
-                        print("{0} : 파괴되었습니다.".format(self.name))
+#         def attack(self, location):
+#                 print("{0} : {1} 방향으로 적군을 공격 합니다. [공격력 {2}]"\
+#                         .format(self.name,location,self.damage)) 
+#         def damaged(self,damage):
+#                 print("{0} : {1} 데미지를 입었습니다.".format(self.name,damage))
+#                 self.hp -= damage
+#                 print("{0} : 현재 체력은 {1} 입니다.".format(self.name, self.hp))
+#                 if self.hp <=0:
+#                         print("{0} : 파괴되었습니다.".format(self.name))
 
-firebet1 = AttacUnit("파이어뱃",50,2,16)
-firebet1.attack("5시")
+# firebet1 = AttacUnit("파이어뱃",50,2,16)
+# firebet1.attack("5시")
 
-firebet1.damaged(25)
-firebet1.damaged(25)
+# firebet1.damaged(25)
+# firebet1.damaged(25)
 
-## 다중 상속 ##
+# ## 다중 상속 ##
 
-class Flyable:
-        def __init__(self, flying_speed):
-                self.flying_speed = flying_speed
+# class Flyable:
+#         def __init__(self, flying_speed):
+#                 self.flying_speed = flying_speed
 
-        def fly(self, name, location):
-                print("{0} : {1} 방향으로 날아갑니다. [속도 {2}]".format(name, location, self.flying_speed))
+#         def fly(self, name, location):
+#                 print("{0} : {1} 방향으로 날아갑니다. [속도 {2}]".format(name, location, self.flying_speed))
 
-class FlyableAttackUnit(AttacUnit, Flyable): ##여기에 move함수를 따로 설정안하면 배틀크루져가 지상유닛 이동으로 출력된다.
-        def __init__(self, name, hp, damage, flying_speed):
-                AttacUnit.__init__(self, name, hp,0 , damage) ## 지상 속도는 0으로 처리
-                Flyable.__init__(self, flying_speed)
+# class FlyableAttackUnit(AttacUnit, Flyable): ##여기에 move함수를 따로 설정안하면 배틀크루져가 지상유닛 이동으로 출력된다.
+#         def __init__(self, name, hp, damage, flying_speed):
+#                 AttacUnit.__init__(self, name, hp,0 , damage) ## 지상 속도는 0으로 처리
+#                 Flyable.__init__(self, flying_speed) 
 
-        def move(self, location):
-                print("[공중 유닛 이동]")
-                self.fly(self.name, location)
-valkyrie = FlyableAttackUnit("발키리",200,6,5) 
-valkyrie.fly(valkyrie.name,"3시")
+#         def move(self, location):
+#                 print("[공중 유닛 이동]")
+#                 self.fly(self.name, location)
+# valkyrie = FlyableAttackUnit("발키리",200,6,5) 
+# valkyrie.fly(valkyrie.name,"3시")
 
-## 매소드 오버라이딩 ## // 자식클래스에서 정의한 매소드를 쓰고 싶은 경우 ( 오버라이딩)
+# ## 매소드 오버라이딩 ## // 자식클래스에서 정의한 매소드를 쓰고 싶은 경우 ( 오버라이딩)
 
-vulture = AttacUnit("벌쳐", 80 , 10, 20)
+# vulture = AttacUnit("벌쳐", 80 , 10, 20)
 
-balltlecruiser = FlyableAttackUnit("배틀크루저", 500, 25, 3)
+# balltlecruiser = FlyableAttackUnit("배틀크루저", 500, 25, 3)
 
 
-vulture.move("11")
-balltlecruiser.move("9시") 
+# vulture.move("11")
+# balltlecruiser.move("9시") 
 
 ## pass ##
 
@@ -858,16 +858,139 @@ balltlecruiser.move("9시")
 # num2 = int(input("두 번째 숫자를 입력하세요 : "))
 # print("{0} / {1} = {2}".format(num1,num2,int(num1/num2))) ## 만약 첫 번째나 두번째에 한글 입력시 오류 발생 할때 처리하는 방법이 예외 처리
 
-try: ## 트라이 내부의 문장을 실행하다가 오류가 발생시 벨류에러의 문장을 실행해준다.
+# try: ## 트라이 내부의 문장을 실행하다가 오류가 발생시 벨류에러의 문장을 실행해준다.
 
-        print("나누기 전용 계산기입니다.")
-        num1 = int(input("첫 번째 숫자를 입력하세요 : "))
-        num2 = int(input("두 번째 숫자를 입력하세요 : "))
-        print("{0} / {1} = {2}".format(num1,num2,int(num1/num2))) 
+#         print("나누기 전용 계산기입니다.")
+#         num1 = int(input("첫 번째 숫자를 입력하세요 : "))
+#         num2 = int(input("두 번째 숫자를 입력하세요 : "))
+#         #print("{0} / {1} = {2}".format(num1,num2,int(num1/num2))) 
 
-except ValueError:
-        print("에러! 잘못된 값을 입력하였습니다")
+# except ValueError:
+#         print("에러! 잘못된 값을 입력하였습니다")
 
-except ZeroDivisionError as err: ## 에러 발생시의 제로 디비젼이나 벨루 에러같은것은 트라이의 내의 문구를 실행 했을때 int문을 한글로 섰을때 따로 오류로 valueerror : 하면서 뜨거나 제로 디비젼하면서 알려준다.
-        print(err)
+# except ZeroDivisionError as err: ## 에러 발생시의 제로 디비젼이나 벨루 에러같은것은 트라이의 내의 문구를 실행 했을때 int문을 한글로 섰을때 따로 오류로 valueerror : 하면서 뜨거나 제로 디비젼하면서 알려준다.
+#         print(err)
+
+
+# try: ## 트라이 내부의 문장을 실행하다가 오류가 발생시 벨류에러의 문장을 실행해준다.
+
+#         print("나누기 전용 계산기입니다.")
+#         nums = []
+#         nums.append(int(input("첫 번째 숫자를 입력하세요 : ")))
+#         nums.append(int(input("첫 번째 숫자를 입력하세요 : ")))
+#         # nums.append(int(nums[0] / nums[1]))
+#         print("{0} / {1} = {2}".format(num1,num2,int(num1/num2))) 
+
+# except ValueError:
+#         print("에러! 잘못된 값을 입력하였습니다")
+
+# except ZeroDivisionError as err: ## 에러 발생시의 제로 디비젼이나 벨루 에러같은것은 트라이의 내의 문구를 실행 했을때 int문을 한글로 섰을때 따로 오류로 valueerror : 하면서 뜨거나 제로 디비젼하면서 알려준다.
+#         print(err)
+# except Exception as err:
+#         print("알수없는 오류가 발생!") ## 만약 오류 내용을 알고 싶으면 exception as err 쓰기
+#         print(err)
+
+## 에러 발생시키기 ##
+
+# try:
+#         print("한 자리 숫자 전용 계산기입니다.")
+#         num1 = int(input("첫 번째 숫자를 입력하세요 : "))
+#         num2 = int(input("첫 번째 숫자를 입력하세요 : "))
+#         if num1>= 10 or num2 >= 10:
+#                 raise ValueError ## 인위적으로 abc 같은걸로 정의 하면 안됨.
+#         print("{0} / {1} = {2}".format(num1,num2,int(num1/num2)))
+# except ValueError:
+#         print("잘못된 값을 입력하였습니다. 한 자리 숫자만 입력하세요.")
+
+## 사용자 정의 예외처리 ##
+
+# class bignumbererror(Exception):
+#         pass
+# try:
+#         print("한 자리 숫자 전용 계산기입니다.")
+#         num1 = int(input("첫 번째 숫자를 입력하세요 : "))
+#         num2 = int(input("첫 번째 숫자를 입력하세요 : "))
+#         if num1>= 10 or num2 >= 10:
+#                 raise bignumbererror ## 사용자의 정의하여 에러 발생시키는 방법 
+#         print("{0} / {1} = {2}".format(num1,num2,int(num1/num2)))
+# except ValueError:
+#         print("잘못된 값을 입력하였습니다. 한 자리 숫자만 입력하세요.")
+
+# except bignumbererror:
+#         print("에러가 발생!! .한 자리 숫자만 입력")
+
+# class bignumbererror(Exception):
+#         def __init__(self,msg): ##바생 메세지 설정 방법
+#                 self.meg = msg
+
+#         def __str__(self):
+#                 return self.meg
+# try:
+#         print("한 자리 숫자 전용 계산기입니다.")
+#         num1 = int(input("첫 번째 숫자를 입력하세요 : "))
+#         num2 = int(input("첫 번째 숫자를 입력하세요 : "))
+#         if num1>= 10 or num2 >= 10:
+#                 raise bignumbererror("입력값 : {0}, {1}".format(num1,num2))
+#         print("{0} / {1} = {2}".format(num1,num2,int(num1/num2)))
+# except ValueError:
+#         print("잘못된 값을 입력하였습니다. 한 자리 숫자만 입력하세요.")
+
+# except bignumbererror as err:
+#         print("에러가 발생!! .한 자리 숫자만 입력")
+#         print(err)
+#         ## 전체적인 과정 설명 [ 10, 5를 입력하면 if문의 내용을 실행하여 bignumbererror에 msg를 저장하여 맨밑의 에러로 처리된다.  ]
+
+## finally ## [ 오류든 정상이든 무조건 실행하게 만드는 명령어]
+
+# class bignumbererror(Exception):
+#         def __init__(self,msg): ##바생 메세지 설정 방법
+#                 self.meg = msg
+
+#         def __str__(self):
+#                 return self.meg
+# try:
+#         print("한 자리 숫자 전용 계산기입니다.")
+#         num1 = int(input("첫 번째 숫자를 입력하세요 : "))
+#         num2 = int(input("첫 번째 숫자를 입력하세요 : "))
+#         if num1>= 10 or num2 >= 10:
+#                 raise bignumbererror("입력값 : {0}, {1}".format(num1,num2))
+#         print("{0} / {1} = {2}".format(num1,num2,int(num1/num2)))
+# except ValueError:
+#         print("잘못된 값을 입력하였습니다. 한 자리 숫자만 입력하세요.")
+
+# except bignumbererror as err:
+#         print("에러가 발생!! .한 자리 숫자만 입력")
+#         print(err)
+# finally:
+#         print("계산기를 이용해 주셔서 감사합니다")
+
+## 퀴즈 9 ##
+
+
+
+
+## 모듈 ## [ theater_module.py 파일을 만듬]
+
+# import theater_module
+# theater_module.price(3)
+# theater_module.price_morning(4)
+# theater_module.price_soldier(5)
+
+# import theater_module as mv ## mv란  as 원하는단어로 지정하면 그 단어로 theater_module의 이름명을 대신 할 수 있다.
+
+# mv.price_soldier(4)
+
+# from theater_module import * ## 모듈에 있는 모든것을 사용하겠다는 의미
+
+# price(3)   ## 각각 차이가 있다. 
+# price_morning(4)
+
+# from theater_module import price, price_morning ## 이렇게 특정 함수만 가져와서 사용 가능하다
+# price(5)
+
+# from theater_module import price_soldier as price ## theater_module에서 price_soldier라는 함수를 가져와서 price라고 이름을 정의하겠다. 라는 뜻
+
+# price(5)
+
+## 패키지 ##
 
