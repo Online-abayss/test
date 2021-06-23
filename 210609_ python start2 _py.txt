@@ -994,3 +994,42 @@ print(not(1>2))
 
 ## 패키지 ##
 
+# import theater_module
+# theater_module.price(3)
+# theater_module.price_morning(4)
+# theater_module.price_soldier(5)
+
+# import theater_module as mv ## mv란  as 원하는단어로 지정하면 그 단어로 theater_module의 이름명을 대신 할 수 있다.
+
+# mv.price_soldier(4)
+
+# from theater_module import * ## 모듈에 있는 모든것을 사용하겠다는 의미
+
+# price(3)   ## 각각 차이가 있다. 
+# price_morning(4)
+
+# from theater_module import price, price_morning ## 이렇게 특정 함수만 가져와서 사용 가능하다
+# price(5)
+
+# from theater_module import price_soldier as price ## theater_module에서 price_soldier라는 함수를 가져와서 price라고 이름을 정의하겠다. 라는 뜻
+
+# price(5)# import theater_module
+# theater_module.price(3)
+# theater_module.price_morning(4)
+# theater_module.price_soldier(5)
+
+# import theater_module as mv ## mv란  as 원하는단어로 지정하면 그 단어로 theater_module의 이름명을 대신 할 수 있다.
+
+# mv.price_soldier(4)
+
+# from theater_module import * ## 모듈에 있는 모든것을 사용하겠다는 의미
+
+# price(3)   ## 각각 차이가 있다. 
+# price_morning(4)
+
+# from theater_module import price, price_morning ## 이렇게 특정 함수만 가져와서 사용 가능하다
+# price(5)
+
+# from theater_module import price_soldier as price ## theater_module에서 price_soldier라는 함수를 가져와서 price라고 이름을 정의하겠다. 라는 뜻
+
+# price(5)
