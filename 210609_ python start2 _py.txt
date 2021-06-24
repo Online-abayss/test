@@ -993,43 +993,101 @@ print(not(1>2))
 # price(5)
 
 ## 패키지 ##
+        ##travel 패키지를 만듦
 
-# import theater_module
-# theater_module.price(3)
-# theater_module.price_morning(4)
-# theater_module.price_soldier(5)
+# import travel.thailand ## import를 쓸때 모듈이나 패키지만 사용가능, 클래스나 함수 사용은 불가 ex) thailandpackage() -> 파일에서 클래스로 정의
+# trip_to = travel.thailand.thailandpackage() ## travel 폴더에 있는 thailand.py 파일에 thailandpackage를 불러오기
+# trip_to.detail()
 
-# import theater_module as mv ## mv란  as 원하는단어로 지정하면 그 단어로 theater_module의 이름명을 대신 할 수 있다.
+# from travel.thailand import thailandpackage ## from * import 는 패키지나 함수를 불러올수 있다 / 위에랑 다른점
+# trip_to = thailandpackage()
+# trip_to.detail()
 
-# mv.price_soldier(4)
+# from travel import vietnam ## 이번엔 패키지만 출력 / 위에는 모듈까지 출력한거.
+# trip_to = vietnam.vietnampackage()
+# trip_to.detail()
 
-# from theater_module import * ## 모듈에 있는 모든것을 사용하겠다는 의미
+## __all__ ##
+# from travel import * ## *가 안되는것은 import의 공개 한계선을 설정하지 않아서 그렇다. / 사용자가 원하는 범위를 지정가능하다.
+# trip_to = vietnam.vietnampackage() ## 공개 조건은 __init__.py에서 설정가능하다.
+# trip_to.detail()
 
-# price(3)   ## 각각 차이가 있다. 
-# price_morning(4)
+## 모듈 직접 실행 ##
+# class thailandpackage:
+#     def detail(self):
+#         print("[태국 패키지 3박 5일], 파타야 여행 (야시장 투어) 50만원 ")
 
-# from theater_module import price, price_morning ## 이렇게 특정 함수만 가져와서 사용 가능하다
-# price(5)
+# if __name__ == "__main__": ## thailand.py 파일에서 직접 실행했을경우 if문이 실행되며, 그 외의 지역 ex) = practice.py 에서 실행 할경우 else문이 진행된다.
+#     print("thailand 모듈을 직접 실행")
+#     print("이 문장은 모듈을 직접 실행할 때만 실행돼요")
+#     trip_to = thailandpackage()
+#     trip_to.detail()
+# else:
+#     print("thailand 외부에서 모듈 호출")
 
-# from theater_module import price_soldier as price ## theater_module에서 price_soldier라는 함수를 가져와서 price라고 이름을 정의하겠다. 라는 뜻
+## 패키지, 모듈 위치 ##
 
-# price(5)# import theater_module
-# theater_module.price(3)
-# theater_module.price_morning(4)
-# theater_module.price_soldier(5)
+# import inspect
+# import random
+# from travel import thailand
+# print(inspect.getfile(random)) ## random 파일의 위치를 알려줌
+# print(inspect.getfile(thailand)) ## 나중에 random 파일과 같은곳에 파일 위치를 thailand를 옮기면 다른 프로젝트 할 때에도 사용이 가능하다
 
-# import theater_module as mv ## mv란  as 원하는단어로 지정하면 그 단어로 theater_module의 이름명을 대신 할 수 있다.
+## pip install ##
+        ## 다른 사람이 만든 패키지를 찾을려면 pypi 사이트들 들어가서 브라우저 프로젝트에 들어가서 원하는 카테고리 골라서 쓰면됨.
+        ## pip list란 글을 밑의 실행창에 직접 입력하면 설치된 패키지 내용들을 알수 있다.
+        ## pip show 패키지이름 =  패키지에 관한 정보를 알려줌 (summary 같은 느낌)
+        ## pip install --upgrade 패키지이름 = 패키지의 업그레이드가 필요할 경우 실행창에 적으면 진행된다.
+        ## pip uninstall 패키지이름 = 패키지 삭제
 
-# mv.price_soldier(4)
+## 내장 함수 ## // 구글에 내장함수라고 검색하여 맨위에 있는걸 들어가면 각종 내장 함수들이 나온다.
+        # input : 사용자 입력을 받는 함수
+        # dir : 어떤 객체를 넘겨줬을 때 그 객체가 어떤 변수와 함수를 가지고 있는지를 표시 / 내가 생각하기엔 특정 객체의 사용가능한 리스트를 보여주는 함수인듯.
+# print(dir())
+# import random ## random은 외장 함수
+# # print(dir())  
+# # import pickle 
+# # print(dir()) ## 이러면 피클과 랜덤이 추가로 표시
 
-# from theater_module import * ## 모듈에 있는 모든것을 사용하겠다는 의미
+# print(dir(random)) ## 이러면 랜덤 내에서 포함되여 있는 함수들을 보여준다. ex) randint()
 
-# price(3)   ## 각각 차이가 있다. 
-# price_morning(4)
+# lst = [1,2,3]
+# print(dir(lst)) ## lst에서 쓸수 있는 함수들을 알려준다. 
 
-# from theater_module import price, price_morning ## 이렇게 특정 함수만 가져와서 사용 가능하다
-# price(5)
+# name = "jim"
+# print(dir(name))
 
-# from theater_module import price_soldier as price ## theater_module에서 price_soldier라는 함수를 가져와서 price라고 이름을 정의하겠다. 라는 뜻
+## 외장 함수 ## // 구글에 외장 함수를 검색하기 위해서는 List of Python modules 라고 검색하면 맨 위 사이트 들어가면 목록들이 뜬다.
 
-# price(5)
+        # glob : 결로 내의 폴더 / 파일 목록 조회
+# import glob
+# print(glob.glob("*.py")) ## 확장자가 py인 모든 파일을 상위 폴더 기준으로 (내기준에서는 pythonstudy)보여줌
+
+#         # os : 운영체제에서 제공하는 기본 기능
+# import os
+# # print(os.getcwd()) # 현재 디렉토리 
+
+# # folder = "sample_dir"
+
+# # if os.path.exists(folder): ## 폴더가 있는지 여부 확인
+# #         print(" 이미 있는 폴더입니다.")
+# #         os.rmdir(folder) ## 폴더 삭제
+# #         print(folder, "폴더를 삭제하였습니다.")
+# # else:
+# #         os.makedirs(folder) # 폴더생성
+# #         print(folder, "폴더를 생성하였습니다.")
+
+# print(os.listdir()) ## glob과 비슷한 기능이다. // 존재하는 파일 목록 보여주나봄. 
+
+# import time
+# print(time.localtime()) ## 이것도 현재시간을 보여준다.
+# print(time.strftime("%Y-%m-%d %H:%M:%S")) ## 우리가 흔히 아는 년 월 일 시 분 초 로 보여준다.
+
+# import datetime
+# print("오늘 날짜는", datetime.date.today())
+# today = datetime.date.today()
+# td = datetime.timedelta(days=100) # 100일 저장 ## timedelta는 두 날짜 사이의 간격을 알려준다.
+# print("우리가 만난지 100일은", today + td)  ## 오늘부터 100일 후 
+
+## 유튜브 나도코딩 기본편 강의 6시간 짜리 쉬는날 제외하고 못해도 30분씩 하려고 했으며, 이해하려고 해서 거진 1시간씩은 투자함. 완강 ! ##
+
