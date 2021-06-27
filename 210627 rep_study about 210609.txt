@@ -1,0 +1,100 @@
+
+# def station(name):
+#         print("{0}행 열차가 들어오고 있습니다.".format(name))
+
+# trail = input("다음 들어올 열차를 입력해주십시오. :")
+# station(trail)
+
+# from random import *
+
+# offline_study_day = randint(4,28) ## 틀린점은 randint는 시작은과 끝이 이상 과 이하로 이루어져 있다.  그러므로 4,29가 아닌 4,28이다.
+
+# print("오프라인 스터디 모임 날짜는 매월 {0} 일로 선정되었습니다.".format(offline_study_day))
+
+# ex = "http://naver.com"
+
+# test = ex[7:]
+# test = ex.replace("http://","")
+# print(test)
+# test1 = test[:5]
+# print(test1)
+
+# password = test1[:3] + str(len(test1)) + str(test1.count("e")) + "!"
+# print(password)
+
+# print(ex.index(".")) ## index는 ()안에 글자가 몇번째에 있는지 알려주는거지 크기를 알려주지않는다... 
+
+# from random import *
+
+# lst = range(1,21)  
+# lst = list(lst) ## 이거 없으 그냥 쓰면 range(1,21) 그대로 출력
+# print(lst)
+
+# shuffle(lst) ## lst = shuffle(lst) 이렇게 지정하지말고 그냥 shuffle(lst) 해야 섞인다.. 그리고 알아서 저장된다.
+# print(lst)
+
+
+# print("치킨 당첨을 축하드립니다. : {0}".format(lst[1]))
+# print("커피 당첨을 축하드립니다. : {0}, {1} , {2}".format(lst[2],lst[3],lst[4]))
+
+
+# picked_people = sample(lst,4)
+# print(picked_people)
+# print("커피 당첨을 축하드립니다. : {0}".format(picked_people[1:]))
+
+# from random import *
+
+# count= 0
+
+# for i in range(1,51):
+#     person_drive_time = randint(5,50)
+
+#     if(5<= person_drive_time <= 15):
+#         print("[O] {0}번째 손님 (소요시간 : {1}분)".format(i,person_drive_time))
+#         count +=1
+#     else:
+#         print("[ ] {0}번째 손님 (소요시간 : {1}분)".format(i,person_drive_time))
+    
+# print("총 탑승 승객 : {0} 분".format(count))
+
+# def std_weight(height,gender):
+#     if (gender =="남"):
+#         return (height /100) * (height /100) * 22
+#     else:
+#         return (height /100) * (height /100) * 21
+
+# height = input("키를 입력해주세요 : ")
+# height=int(height)
+# gender = input("성별을 입력해주세요 : ")
+# # height = 175
+# # gender = "남"
+
+# standard_weight=std_weight(height,gender)
+# standard_weight = round(standard_weight,2)
+# print("키 {0}cm 남자의 표준 체중은 {1} 입니다.".format(height,standard_weight))
+
+    ## 퀴즈 7번 관한 문항들 다시봐야겟음.
+
+# class House:
+#     def __init__(self, location, house_type, deal_type, price, competion_year) :
+#        self.location = location
+#        self.house_type = house_type
+#        self.deal_type = deal_type
+#        self.price = price
+#        self.competion_year = competion_year
+
+#     def show_detail(self):
+#         print(self.location, self.house_type, self.deal_type,self.price,  self.competion_year)
+
+# houses = []
+# house1 = House("강남","아파트","매매","10억","2010년")
+
+# houses.append(house1)
+
+# print("총 {0}개의 매물이 있습니다.".format(len(houses)))
+# for home in houses:
+#     home.show_detail()
+
+# house1.show_detail()
+
+    ## 퀴즈 8번도 잘보기##
