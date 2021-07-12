@@ -1,0 +1,26 @@
+class Word:
+    def __init__(self,word,qeustion1,qeustion2,answer):
+        self.word = word
+        self.qeustion1 = qeustion1
+        self.qeustion2 = qeustion2
+        self.answer = answer
+
+    def show_question(self):
+        print(f"\"{self.word}\"의 뜻은?")
+        print("1."+ self.qeustion1)
+        print("2."+ self.qeustion2)
+
+
+    def check_answer(self,user_input):
+        if user_input == self.answer:
+            print("정답")
+        else:
+            print("땡")
+        
+
+
+        
+
+word = Word("얼죽아","얼어 죽어도 아메리카노","얼굴만은 죽어도 아기피부",1)
+word.show_question()
+word.check_answer(int(input("=> ")))
